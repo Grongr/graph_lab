@@ -90,6 +90,9 @@ public:
 
     void clear() { pts.clear(); }
 
+// Iterators
+/*=============================================================*/
+
     auto begin() { return pts.begin(); }
 
     auto end() { return pts.end(); }
@@ -97,6 +100,25 @@ public:
     auto cbegin() const { return pts.cbegin(); }
 
     auto cend() const { return pts.cend(); }
+
+// Working with key
+/*=============================================================*/
+
+    size_t degree_out(key_type key) const;
+
+    size_t degree_in(key_type key) const;
+
+    bool   loop(key_type key) const;
+
+    value_type& at(key_type key) const {
+
+        return this->pts.at(key).value;
+    }
+
+    value_type& operator[](key_type key) {
+
+        return this->pts[key].value;
+    }
 
 private:
     std::map<key_type, Node> pts;
