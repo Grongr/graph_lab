@@ -122,8 +122,16 @@ public:
 
     void swap(Graph& g);
 
+    std::pair<typename std::map<key_type, Node>::iterator, bool>
+        insert_node(key_type key, value_type val);
+
 private:
     std::map<key_type, Node> pts;
 };
+
+template<typename key_type, typename value_type,
+         typename weight_type>
+void swap(Graph<key_type, value_type, weight_type>& g1,
+          Graph<key_type, value_type, weight_type>& g2);
 
 #endif // GRAPH_IS_INCLUDED

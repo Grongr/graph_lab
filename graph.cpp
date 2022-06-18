@@ -1,4 +1,5 @@
 #include "graph.hpp"
+#include <utility>
 
 template<typename key_type, typename value_type,
          typename weight_type>
@@ -48,4 +49,22 @@ void swap(Graph<key_type, value_type, weight_type>& g1,
         Graph<key_type, value_type, weight_type>& g2) {
 
     g1.swap(g2);
+}
+
+template<typename key_type, typename value_type,
+         typename weight_type>
+std::pair<typename std::map<key_type,
+          typename Graph<key_type, value_type, weight_type>::Node>::iterator,
+          bool>
+Graph<key_type, value_type, weight_type>::insert_node(key_type key, value_type val) {
+    
+    auto iter = this->pts.find(key);
+    if (iter != this->pts.end())
+        return std::make_pair(iter, false);
+
+    auto result = this->pts.insert( {key, Node()} );
+
+    this->pts.at(key).pvalue = val;
+
+    return std::make_pair(result, true);
 }
