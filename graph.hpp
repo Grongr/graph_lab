@@ -120,6 +120,8 @@ public:
         return this->pts[key].value;
     }
 
+    void swap(Graph& g);
+
 private:
     std::map<key_type, Node> pts;
 };
